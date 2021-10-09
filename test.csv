@@ -1,0 +1,2 @@
+location_name,location_region,location_country,location_lat,location_lon,location_tz_id,location_localtime_epoch,location_localtime,astronomy_astro_sunrise,astronomy_astro_sunset,astronomy_astro_moonrise,astronomy_astro_moonset,astronomy_astro_moon_phase,astronomy_astro_moon_illumination
+Paris,Ile-de-France,France,48.87,2.33,Europe/Paris,1632894954,2021-09-29 7:55,07:48 AM,07:34 PM,No moonrise,04:27 PM,Last Quarter,35

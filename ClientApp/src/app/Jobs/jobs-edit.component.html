@@ -1,0 +1,108 @@
+<div class="city-edit">
+  <h1>{{title}}</h1>
+
+  <p *ngIf="this.id && !job"><em>Loading...</em></p>
+
+  <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="name">Job name:</label>
+      <br />
+      <input type="text" id="name"
+             formControlName="name" required
+             placeholder="Job name..."
+             class="form-control" />
+      <div *ngIf="form.get('name').invalid &&
+           (form.get('name').dirty || form.get('name').touched)" class="invalid-feedback">
+        <div *ngIf="form.get('name').errors?.required">
+          Name is required.
+        </div>
+        <div *ngIf="form.get('name').errors?.isDupeField">
+          Name already exists: please choose another.
+        </div>
+      </div>
+      </div>
+
+    <div class="form-group">
+      <label for="description">Job description:</label>
+      <br />
+      <input type="text" id="description"
+             formControlName="description" required
+             placeholder="description..."
+             class="form-control" />
+  
+    </div>
+
+
+    <div class="form-group">
+      <label for="momentTime">Job momentTime:</label>
+      <br />
+      <input type="time" id="momentTime"
+             formControlName="momentTime" required
+             placeholder="momentTime..."
+             class="form-control" />
+
+
+      <div class="form-group">
+        <label for="periodicity">Job periodicity:</label>
+        <br />
+        <input type="text" id="periodicity"
+               formControlName="periodicity" required
+               placeholder="periodicity..."
+               class="form-control" />
+        <div *ngIf="form.get('periodicity').errors?.pattern">
+          periodicity request only numbers.
+        </div>
+
+      </div>
+
+      <div class="form-group" *ngIf="apis">
+        <label for="apiId">Api:</label>
+        <br />
+        <mat-form-field *ngIf="apis">
+          <mat-label>Select a Api...</mat-label>
+          <mat-select id="apiId" formControlName="apiId">
+            <mat-option *ngFor="let api of apis" [value]="api.apiId">
+              {{api.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <label for="city">api city:</label>
+        <br />
+        <input type="text" id="city"
+               formControlName="city" required
+               placeholder="city..."
+               class="form-control" />
+
+      </div>
+
+      <div class="form-group commands">
+        <button *ngIf="id" type="submit"
+                (click)="onSubmit()"
+                [disabled]="form.invalid"
+                class="btn btn-success">
+          Save
+        </button>
+
+        <button *ngIf="!id" type="submit"
+                (click)="onSubmit()"
+                [disabled]="form.invalid"
+                class="btn btn-success">
+
+          Create
+
+        </button>
+
+        <button type="button"
+                [routerLink]="['/jobs']"
+                class="btn">
+          Cancel
+          <br />
+
+        </button>
+      </div>
+    </div>
+ </div>
